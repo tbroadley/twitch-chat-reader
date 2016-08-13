@@ -4,15 +4,53 @@
     <meta charset="utf-8">
     <title>Twitch Chat Reader</title>
 
+    <script src="http://www.tmijs.org/js/0.0.29/tmi.js"></script>
     <script src="mespeak/mespeak.js"></script>
 
     <script type="text/javascript">
       meSpeak.loadConfig("mespeak/mespeak_config.json");
       meSpeak.loadVoice("mespeak/voices/en/en.json");
-
-      meSpeak.speak('Hello world');
     </script>
   </head>
   <body>
+    <script type="text/javascript">
+      var clientOptions = {
+        channels: ['MOONMOON_OW']
+      };
+      var client = new irc.client(clientOptions);
+
+      var messageQueue = [];
+
+      client.on('message', function(channel, user, message) {
+        messageQueue.unshift(message);
+      });
+
+      var intervalId;
+
+      function pollForMessages() {
+        intervalId = setInterval(function() {
+          if (messageQueue.length > 0) {
+            clearInterval(intervalId);
+            readMessage();
+          }
+        }, 1000);
+      }
+
+      function readMessage() {
+        var message = messageQueue.shift();
+
+        meSpeak.speak(message, undefined, function() {
+          if (messageQueue.length > 0) {
+            readMessage();
+          } else {
+            pollForMessages();
+          }
+        });
+      }
+
+      client.connect();
+
+      pollForMessages();
+    </script>
   </body>
 </html>
