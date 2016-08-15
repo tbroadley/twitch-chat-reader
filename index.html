@@ -23,6 +23,22 @@
       <input aria-labelledby="subscriber_input_label" type="checkbox" name="subscriber">
     </section>
 
+    <section>
+      <article>
+        <span id="word_input_label">Only read messages that contain one of the following words</span>
+        <input aria-labelledby="word_input_label" type="checkbox" name="word_enable">
+      </article>
+      <article>
+        <textarea aria-labelledby="word_input_label"
+                  aria-describedby="word_input_description"
+                  name="word_list">
+        </textarea>
+      </article>
+      <article>
+        <span id="word_input_description">Enter a list of words with one word on each line.</span>
+      </article>
+    </section>
+
     <script src="index.js" charset="utf-8"></script>
   </body>
 </html>
