@@ -1,6 +1,7 @@
 var client;
 var messageQueue = [];
 var timerId;
+var onlySubscribers;
 
 document.getElementsByName('channel')[0].addEventListener('change', function(e) {
   if (client) client.disconnect();
@@ -11,10 +12,16 @@ document.getElementsByName('channel')[0].addEventListener('change', function(e) 
   messageQueue = [];
 
   client.on('message', function(channel, user, message) {
+    if (onlySubscribers && !user.subscriber) return;
+
     messageQueue.unshift(message);
   });
 
   client.connect();
+});
+
+document.getElementsByName('subscriber')[0].addEventListener('change', function(e) {
+  onlySubscribers = e.target.checked;
 });
 
 function pollForMessages() {
