@@ -3,7 +3,11 @@ var messageQueue = [];
 var timerId;
 var onlySubscribers;
 
-document.getElementsByName('channel')[0].addEventListener('change', function(e) {
+function addChangeListener(name, callback) {
+  document.getElementsByName(name)[0].addEventListener('change', callback);
+}
+
+addChangeListener('channel', function(e) {
   if (client) client.disconnect();
   client = new irc.client({
     channels: [e.target.value]
@@ -20,7 +24,7 @@ document.getElementsByName('channel')[0].addEventListener('change', function(e) 
   client.connect();
 });
 
-document.getElementsByName('subscriber')[0].addEventListener('change', function(e) {
+addChangeListener('subscriber', function(e) {
   onlySubscribers = e.target.checked;
 });
 
