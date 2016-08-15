@@ -7,6 +7,7 @@ var filterByWords;
 var wordsToFilterBy;
 
 var volume = 100;
+var voice = 'm4';
 
 function addChangeListener(name, callback) {
   document.getElementsByName(name)[0].addEventListener('change', callback);
@@ -60,6 +61,10 @@ addChangeListener('volume', function(e) {
   volume = e.target.value;
 });
 
+addChangeListener('voice', function(e) {
+  voice = e.target.value;
+});
+
 function pollForMessages() {
   timerId = setInterval(function() {
     if (messageQueue.length > 0) {
@@ -73,7 +78,8 @@ function readMessage() {
   var message = messageQueue.pop();
 
   meSpeak.speak(message, {
-    amplitude: volume
+    amplitude: volume,
+    variant: voice
   }, function() {
     if (messageQueue.length > 0) {
       readMessage();
