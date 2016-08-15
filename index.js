@@ -1,10 +1,27 @@
 var client;
 var messageQueue = [];
 var timerId;
+
 var onlySubscribers;
+var filterByWords;
+var wordsToFilterBy;
 
 function addChangeListener(name, callback) {
   document.getElementsByName(name)[0].addEventListener('change', callback);
+}
+
+function intersection(source, comparison) {
+  return source.filter(function(element) {
+    return comparison.indexOf(element) !== -1;
+  });
+}
+
+function containsWord(string, filterBy) {
+  var wordArray = string.split('').filter(function(character) {
+    return character.match(new RegExp(/[\w\s]/));
+  }).join('').toLowerCase().split(/\s/);
+
+  return intersection(wordArray, filterBy).length > 0;
 }
 
 addChangeListener('channel', function(e) {
@@ -17,6 +34,7 @@ addChangeListener('channel', function(e) {
 
   client.on('message', function(channel, user, message) {
     if (onlySubscribers && !user.subscriber) return;
+    if (filterByWords && !containsWord(message, wordsToFilterBy)) return;
 
     messageQueue.unshift(message);
   });
@@ -26,6 +44,14 @@ addChangeListener('channel', function(e) {
 
 addChangeListener('subscriber', function(e) {
   onlySubscribers = e.target.checked;
+});
+
+addChangeListener('word_enable', function(e) {
+  filterByWords = e.target.checked;
+});
+
+addChangeListener('word_list', function(e) {
+  wordsToFilterBy = e.target.value.trim().toLowerCase().split('\n');
 });
 
 function pollForMessages() {
