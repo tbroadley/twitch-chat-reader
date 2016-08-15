@@ -1,6 +1,6 @@
 var client;
 var messageQueue = [];
-var intervalId;
+var timerId;
 
 document.getElementsByName('channel')[0].addEventListener('change', function(e) {
   if (client) client.disconnect();
@@ -18,9 +18,9 @@ document.getElementsByName('channel')[0].addEventListener('change', function(e) 
 });
 
 function pollForMessages() {
-  intervalId = setInterval(function() {
+  timerId = setInterval(function() {
     if (messageQueue.length > 0) {
-      clearInterval(intervalId);
+      clearInterval(timerId);
       readMessage();
     }
   }, 1000);
