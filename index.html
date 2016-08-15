@@ -13,19 +13,27 @@
     </script>
   </head>
   <body>
+    <input type="text" name="channel">
+
     <script type="text/javascript">
-      var clientOptions = {
-        channels: ['MOONMOON_OW']
-      };
-      var client = new irc.client(clientOptions);
-
+      var client;
       var messageQueue = [];
-
-      client.on('message', function(channel, user, message) {
-        messageQueue.unshift(message);
-      });
-
       var intervalId;
+
+      document.getElementsByName('channel')[0].addEventListener('change', function(e) {
+        if (client) client.disconnect();
+        client = new irc.client({
+          channels: [e.target.value]
+        });
+
+        messageQueue = [];
+
+        client.on('message', function(channel, user, message) {
+          messageQueue.unshift(message);
+        });
+
+        client.connect();
+      });
 
       function pollForMessages() {
         intervalId = setInterval(function() {
@@ -47,8 +55,6 @@
           }
         });
       }
-
-      client.connect();
 
       pollForMessages();
     </script>
