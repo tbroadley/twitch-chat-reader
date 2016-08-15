@@ -6,6 +6,8 @@ var onlySubscribers;
 var filterByWords;
 var wordsToFilterBy;
 
+var volume = 100;
+
 function addChangeListener(name, callback) {
   document.getElementsByName(name)[0].addEventListener('change', callback);
 }
@@ -54,6 +56,10 @@ addChangeListener('word_list', function(e) {
   wordsToFilterBy = e.target.value.trim().toLowerCase().split('\n');
 });
 
+addChangeListener('volume', function(e) {
+  volume = e.target.value;
+});
+
 function pollForMessages() {
   timerId = setInterval(function() {
     if (messageQueue.length > 0) {
@@ -66,7 +72,9 @@ function pollForMessages() {
 function readMessage() {
   var message = messageQueue.pop();
 
-  meSpeak.speak(message, undefined, function() {
+  meSpeak.speak(message, {
+    amplitude: volume
+  }, function() {
     if (messageQueue.length > 0) {
       readMessage();
     } else {
