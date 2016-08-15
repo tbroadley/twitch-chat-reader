@@ -37,7 +37,7 @@
       }
 
       function readMessage() {
-        var message = messageQueue.shift();
+        var message = messageQueue.pop();
 
         meSpeak.speak(message, undefined, function() {
           if (messageQueue.length > 0) {
