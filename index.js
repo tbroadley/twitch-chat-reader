@@ -5,6 +5,8 @@ var timerId;
 var onlySubscribers;
 var filterByWords;
 var wordsToFilterBy;
+var filterByUsers;
+var usersToFilterBy;
 
 var volume = 100;
 var voice = 'm4';
@@ -40,6 +42,7 @@ addChangeListener('channel', function(e) {
     if (onlySubscribers && !user.subscriber) return;
     if (filterByWords && !containsWord(message, wordsToFilterBy)) return;
     if (filterChatCommands && message.substring(0, 1) === '!') return;
+    if (filterByUsers && usersToFilterBy.indexOf(user.name) !== -1) return;
 
     messageQueue.unshift(message);
   });
@@ -69,6 +72,14 @@ addChangeListener('voice', function(e) {
 
 addChangeListener('exclamation', function(e) {
   filterChatCommands = e.target.checked;
+});
+
+addChangeListener('user_enable', function(e) {
+  filterByUsers = e.target.checked;
+});
+
+addChangeListener('user_list', function(e) {
+  usersToFilterBy = e.target.value.trim().toLowerCase().split('\n');
 });
 
 function pollForMessages() {

@@ -53,6 +53,18 @@
       <input aria-labeledby="exclamation_label" type="checkbox" name="exclamation" checked>
     </section>
 
+    <section>
+      <article>
+        <span id="user_input_label">Filter out messages from the following users</span>
+        <input aria-labelledby="user_input_label" type="checkbox" name="user_enable">
+      </article>
+      <article>
+        <textarea aria-labelledby="user_input_label"
+                  name="user_list"
+                  placeholder="Enter a list of usernames with one username on each line."></textarea>
+      </article>
+    </section>
+
     <script src="index.js" charset="utf-8"></script>
   </body>
 </html>
