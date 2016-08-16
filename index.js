@@ -42,7 +42,7 @@ addChangeListener('channel', function(e) {
     if (onlySubscribers && !user.subscriber) return;
     if (filterByWords && !containsWord(message, wordsToFilterBy)) return;
     if (filterChatCommands && message.substring(0, 1) === '!') return;
-    if (filterByUsers && usersToFilterBy.indexOf(user.name) !== -1) return;
+    if (filterByUsers && usersToFilterBy.indexOf(user.username) !== -1) return;
 
     messageQueue.unshift(message);
   });
