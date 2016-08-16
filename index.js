@@ -3,10 +3,8 @@ var messageQueue = [];
 var timerId;
 
 var onlySubscribers;
-var filterByWords;
-var wordsToFilterBy;
-var filterByUsers;
-var usersToFilterBy;
+var wordsToFilterBy = [];
+var usersToFilterBy = [];
 
 var volume = 100;
 var voice = 'm4';
@@ -39,10 +37,12 @@ addChangeListener('channel', function(e) {
   messageQueue = [];
 
   client.on('message', function(channel, user, message) {
+    console.log(message, wordsToFilterBy, user.username, usersToFilterBy)
+
     if (onlySubscribers && !user.subscriber) return;
-    if (filterByWords && !containsWord(message, wordsToFilterBy)) return;
+    if (wordsToFilterBy.length > 0 && !containsWord(message, wordsToFilterBy)) return;
     if (filterChatCommands && message.substring(0, 1) === '!') return;
-    if (filterByUsers && usersToFilterBy.indexOf(user.username) !== -1) return;
+    if (usersToFilterBy.indexOf(user.username) !== -1) return;
 
     messageQueue.unshift(message);
   });
@@ -54,12 +54,16 @@ addChangeListener('subscriber', function(e) {
   onlySubscribers = e.target.checked;
 });
 
-addChangeListener('word_enable', function(e) {
-  filterByWords = e.target.checked;
-});
-
 addChangeListener('word_list', function(e) {
   wordsToFilterBy = e.target.value.trim().toLowerCase().split('\n');
+});
+
+addChangeListener('exclamation', function(e) {
+  filterChatCommands = e.target.checked;
+});
+
+addChangeListener('user_list', function(e) {
+  usersToFilterBy = e.target.value.trim().toLowerCase().split('\n');
 });
 
 addChangeListener('volume', function(e) {
@@ -68,18 +72,6 @@ addChangeListener('volume', function(e) {
 
 addChangeListener('voice', function(e) {
   voice = e.target.value;
-});
-
-addChangeListener('exclamation', function(e) {
-  filterChatCommands = e.target.checked;
-});
-
-addChangeListener('user_enable', function(e) {
-  filterByUsers = e.target.checked;
-});
-
-addChangeListener('user_list', function(e) {
-  usersToFilterBy = e.target.value.trim().toLowerCase().split('\n');
 });
 
 function pollForMessages() {
