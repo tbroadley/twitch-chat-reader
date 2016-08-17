@@ -7,7 +7,6 @@ var wordsToFilterBy = [];
 var usersToFilterBy = [];
 
 var volume = 0.5;
-var voice = 'm4';
 var filterChatCommands = true;
 
 function addChangeListener(id, callback) {
@@ -68,10 +67,6 @@ addChangeListener('volume', function(e) {
   meSpeak.setVolume(e.target.value);
 });
 
-addChangeListener('voice', function(e) {
-  voice = e.target.value;
-});
-
 function pollForMessages() {
   timerId = setInterval(function() {
     if (messageQueue.length > 0) {
@@ -84,9 +79,7 @@ function pollForMessages() {
 function readMessage() {
   var message = messageQueue.pop();
 
-  meSpeak.speak(message, {
-    variant: voice
-  }, function() {
+  meSpeak.speak(message, undefined, function() {
     if (messageQueue.length > 0) {
       readMessage();
     } else {
