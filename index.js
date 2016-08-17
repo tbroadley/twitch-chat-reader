@@ -37,8 +37,6 @@ addChangeListener('channel', function(e) {
   messageQueue = [];
 
   client.on('message', function(channel, user, message) {
-    console.log(message, wordsToFilterBy, user.username, usersToFilterBy)
-
     if (onlySubscribers && !user.subscriber) return;
     if (wordsToFilterBy.length > 0 && !containsWord(message, wordsToFilterBy)) return;
     if (filterChatCommands && message.substring(0, 1) === '!') return;
