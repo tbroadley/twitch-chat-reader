@@ -1,3 +1,7 @@
+form {
+  margin: 1rem;
+}
+
 form > label, form > label > span {
   display: block;
 }
@@ -8,4 +12,22 @@ form > label {
 
 form > label > span {
   margin-bottom: 0.5rem;
+}
+
+form > label > textarea {
+  width: 100%;
+}
+
+label {
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+h1 {
+  font-family: "Times New Roman", Times, serif;
+}
+
+body {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }

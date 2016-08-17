@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="index.css" media="screen" charset="utf-8">
   </head>
   <body>
-    <h1>Twitch Chat Reader</h1>
+    <form aria-labelledby="form_label">
+      <h1 id="form_label">Twitch Chat Reader</h1>
 
-    <form>
       <label for="channel">
         Channel name:
         <input id="channel" type="text" name="channel">
@@ -44,7 +44,9 @@
       <label for="word_list">
         <span>Only read messages that contain one of the following words:</span>
         <textarea id="word_list"
-                  placeholder="Enter a list of words with one word on each line."></textarea>
+                  placeholder="Enter a list of words with one word on each line."
+                  rows="10"
+                  cols="80"></textarea>
       </label>
 
       <label for="exclamation">
@@ -55,7 +57,9 @@
       <label for="user_list">
         <span>Filter out messages from the following users:</span>
         <textarea id="user_list"
-                  placeholder="Enter a list of usernames with one username on each line."></textarea>
+                  placeholder="Enter a list of usernames with one username on each line."
+                  rows="10"
+                  cols="80"></textarea>
       </label>
     </form>
 
