@@ -6,7 +6,7 @@ var onlySubscribers;
 var wordsToFilterBy = [];
 var usersToFilterBy = [];
 
-var volume = 100;
+var volume = 0.5;
 var voice = 'm4';
 var filterChatCommands = true;
 
@@ -65,7 +65,7 @@ addChangeListener('user_list', function(e) {
 });
 
 addChangeListener('volume', function(e) {
-  volume = e.target.value;
+  meSpeak.setVolume(e.target.value);
 });
 
 addChangeListener('voice', function(e) {
@@ -85,7 +85,6 @@ function readMessage() {
   var message = messageQueue.pop();
 
   meSpeak.speak(message, {
-    amplitude: volume,
     variant: voice
   }, function() {
     if (messageQueue.length > 0) {
