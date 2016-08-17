@@ -10,8 +10,8 @@ var volume = 100;
 var voice = 'm4';
 var filterChatCommands = true;
 
-function addChangeListener(name, callback) {
-  document.getElementsByName(name)[0].addEventListener('change', callback);
+function addChangeListener(id, callback) {
+  document.getElementById(id).addEventListener('change', callback);
 }
 
 function intersection(source, comparison) {

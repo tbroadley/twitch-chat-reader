@@ -13,47 +13,47 @@
     </script>
   </head>
   <body>
-    <section>
-      <span id="channel_input_label">Channel name</span>
-      <input aria-labelledby="channel_input_label" type="text" name="channel">
-    </section>
+    <form>
+      <label for="channel">
+        Channel name:
+        <input id="channel" type="text" name="channel">
+      </label>
 
-    <section>
-      <span id="volume_label">Volume</span>
-      <input aria-labelledby="volume_label" type="range" name="volume" min="0" max="500" value="100">
-    </section>
+      <label for="volume">
+        Volume:
+        <input id="volume" type="range" name="volume" min="0" max="500" value="100">
+      </label>
 
-    <section>
-      <span id="voice_label">Voice</span>
-      <select aria-labelledby="voice_label" name="voice">
-        <option value="f1">Female</option>
-        <option value="m4" selected>Male</option>
-      </select>
-    </section>
+      <label for="voice">
+        Voice:
+        <select id="voice">
+          <option value="f1">Female</option>
+          <option value="m4" selected>Male</option>
+        </select>
+      </label>
 
-    <section>
-      <span id="subscriber_input_label">Only read messages from subscribers</span>
-      <input aria-labelledby="subscriber_input_label" type="checkbox" name="subscriber">
-    </section>
+      <label for="subscriber">
+        <input id="subscriber" type="checkbox">
+        Only read messages from subscribers
+      </label>
 
-    <section>
-      <span id="word_input_label">Only read messages that contain one of the following words</span>
-      <textarea aria-labelledby="word_input_label"
-                name="word_list"
-                placeholder="Enter a list of words with one word on each line."></textarea>
-    </section>
+      <label for="word_list">
+        <span>Only read messages that contain one of the following words:</span>
+        <textarea id="word_list"
+                  placeholder="Enter a list of words with one word on each line."></textarea>
+      </label>
 
-    <section>
-      <span id="exclamation_label">Filter out chat commands (messages that start with '!')</span>
-      <input aria-labeledby="exclamation_label" type="checkbox" name="exclamation" checked>
-    </section>
+      <label for="exclamation">
+        Filter out chat commands (messages that start with '!')
+        <input id="exclamation" type="checkbox" checked>
+      </label>
 
-    <section>
-      <span id="user_input_label">Filter out messages from the following users</span>
-      <textarea aria-labelledby="user_input_label"
-                name="user_list"
-                placeholder="Enter a list of usernames with one username on each line."></textarea>
-    </section>
+      <label for="user_list">
+        <span>Filter out messages from the following users:</span>
+        <textarea id="user_list"
+                  placeholder="Enter a list of usernames with one username on each line."></textarea>
+      </label>
+    </form>
 
     <script src="index.js" charset="utf-8"></script>
   </body>
