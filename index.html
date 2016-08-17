@@ -18,49 +18,63 @@
     <form aria-labelledby="form_label">
       <h1 id="form_label">Twitch Chat Reader</h1>
 
-      <label for="channel">
-        Channel name:
-        <input id="channel" type="text" name="channel">
-      </label>
+      <section aria-labelledby="form_label">
+        <label for="channel">
+          Channel name:
+          <input id="channel" type="text" name="channel">
+        </label>
+      </section>
 
-      <label for="volume">
-        Volume:
-        <input id="volume" type="range" name="volume" min="0" max="500" value="100">
-      </label>
+      <section aria-labelledby="voice_controls">
+        <h2 id="voice_controls">Voice Controls</h2>
 
-      <label for="voice">
-        Voice:
-        <select id="voice">
-          <option value="f1">Female</option>
-          <option value="m4" selected>Male</option>
-        </select>
-      </label>
+        <label for="volume">
+          Volume:
+          <input id="volume" type="range" name="volume" min="0" max="500" value="100">
+        </label>
 
-      <label for="subscriber">
-        <input id="subscriber" type="checkbox">
-        Only read messages from subscribers
-      </label>
+        <label for="voice">
+          Voice:
+          <select id="voice">
+            <option value="f1">Female</option>
+            <option value="m4" selected>Male</option>
+          </select>
+        </label>
+      </section>
 
-      <label for="word_list">
-        <span>Only read messages that contain one of the following words:</span>
-        <textarea id="word_list"
-                  placeholder="Enter a list of words with one word on each line."
-                  rows="10"
-                  cols="80"></textarea>
-      </label>
+      <section aria-labelledby="user_filters">
+        <h2 id="user_filters">User Filters</h2>
 
-      <label for="exclamation">
-        <input id="exclamation" type="checkbox" checked>
-        Filter out chat commands (messages that start with '!')
-      </label>
+        <label for="subscriber">
+          <input id="subscriber" type="checkbox">
+          Only read messages from subscribers
+        </label>
 
-      <label for="user_list">
-        <span>Filter out messages from the following users:</span>
-        <textarea id="user_list"
-                  placeholder="Enter a list of usernames with one username on each line."
-                  rows="10"
-                  cols="80"></textarea>
-      </label>
+        <label for="user_list">
+          <span>Filter out messages from the following users:</span>
+          <textarea id="user_list"
+                    placeholder="Enter a list of usernames with one username on each line."
+                    rows="10"
+                    cols="80"></textarea>
+        </label>
+      </section>
+
+      <section aria-labelledby="message_filters">
+        <h2 id="message_filters">Message Filters</h2>
+
+        <label for="exclamation">
+          <input id="exclamation" type="checkbox" checked>
+          Filter out chat commands (messages that start with '!')
+        </label>
+
+        <label for="word_list">
+          <span>Only read messages that contain one of the following words:</span>
+          <textarea id="word_list"
+                    placeholder="Enter a list of words with one word on each line."
+                    rows="10"
+                    cols="80"></textarea>
+        </label>
+      </section>
     </form>
 
     <script src="index.js" charset="utf-8"></script>

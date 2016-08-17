@@ -2,19 +2,19 @@ form {
   margin: 1rem;
 }
 
-form > label, form > label > span {
+form > section > label, form > section > label > span {
   display: block;
 }
 
-form > label {
+form > section > label {
   margin-bottom: 1rem;
 }
 
-form > label > span {
+form > section > label > span {
   margin-bottom: 0.5rem;
 }
 
-form > label > textarea {
+form > section > label > textarea {
   width: 100%;
 }
 
@@ -22,7 +22,7 @@ label {
   font-family: Verdana, Geneva, sans-serif;
 }
 
-h1 {
+h1, h2 {
   font-family: "Times New Roman", Times, serif;
 }
 
